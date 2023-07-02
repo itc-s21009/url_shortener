@@ -26,7 +26,7 @@ const App = () => {
         }
         return (
             <>
-                <table className={"table table-hover"}>
+                <table className={"table table-hover align-middle"}>
                     <thead>
                     <tr>
                         <th>URL</th>
@@ -38,7 +38,7 @@ const App = () => {
                     {
                         history.map(h =>
                             <tr key={h.url}>
-                                <td>{h.url}</td>
+                                <td className={"text-break"}>{h.url}</td>
                                 <td>{h.alias}</td>
                                 <td>
                                     <button className={`ms-2 btn btn-outline-primary text-nowrap`}>コピー</button>
