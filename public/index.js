@@ -1,11 +1,17 @@
 const root = ReactDOM.createRoot(document.getElementById('app'));
 
 const App = () => {
-    const [disabled, setDisabled] = React.useState(true)
-    const getDisabledClass = () => disabled ? 'disabled' : ''
-    const handleInput = (e) => {
-        const text = e.target.value
-        setDisabled(!(text.startsWith('http://') || text.startsWith('https://')))
+    const [text, setText] = React.useState('')
+    const isDisabled = !(text.startsWith('http://') || text.startsWith('https://'))
+    const getDisabledClass = () => isDisabled ? 'disabled' : ''
+    const handleInput = (e) => setText(e.target.value)
+    const onSubmit = () => {
+        console.log('post')
+        axios.post('/', {
+            text: text
+        }).then((r) => {
+            console.log(r)
+        })
     }
     return (
         <>
@@ -13,7 +19,9 @@ const App = () => {
                 <div className="d-flex">
                     <input type="text" name="text" id="url"
                            placeholder="URL" className="form-control" onChange={(e) => handleInput(e)}/>
-                    <button className={`ms-2 btn btn-primary ${getDisabledClass()} text-nowrap`}>短縮する</button>
+                    <button className={`ms-2 btn btn-primary ${getDisabledClass()} text-nowrap`}
+                            onClick={() => onSubmit()}>短縮する
+                    </button>
                 </div>
             </form>
         </>
