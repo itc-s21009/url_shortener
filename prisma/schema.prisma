@@ -11,8 +11,8 @@ datasource db {
 }
 
 model Link {
-  id           Int    @id
+  id           Int    @id @default(autoincrement())
   to           String @unique
   alias        String @unique
-  access_count Int
+  access_count Int    @default(0)
 }
