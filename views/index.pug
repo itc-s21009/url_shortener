@@ -3,7 +3,8 @@ extends layout
 block content
   h1.pt-5.text-center URL 短縮サービス
   .w-50.m-auto
-    form(method='post' action='/')
-      .d-flex
-        input#url.form-control(type='text' name='text' placeholder='URL')
-        button.ms-2.btn.btn-primary.disabled.text-nowrap 短縮する
+    #app
+  script(src='https://unpkg.com/react@18/umd/react.development.js' crossorigin)
+  script(src='https://unpkg.com/react-dom@18/umd/react-dom.development.js' crossorigin)
+  script(src='https://unpkg.com/@babel/standalone/babel.min.js' crossorigin)
+  script(type="text/babel" src='index.js')
