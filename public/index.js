@@ -11,11 +11,12 @@ const App = () => {
             text: text
         }).then((r) => {
             const alias = r.data
-            const data = {
-                url: text,
-                alias: alias
-            }
-            if (!history.includes(data)) {
+            let found = history.filter(h => h.alias === alias).length > 0
+            if (!found) {
+                const data = {
+                    url: text,
+                    alias: alias
+                }
                 setHistory([...history, data])
             }
         })
@@ -60,7 +61,9 @@ const App = () => {
                         onClick={() => onSubmit()}>短縮する
                 </button>
             </div>
-            <ResultArea/>
+            <div className="mt-3">
+                <ResultArea/>
+            </div>
         </>
     )
 }
