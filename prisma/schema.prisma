@@ -12,7 +12,7 @@ datasource db {
 
 model Link {
   id           Int    @id @default(autoincrement())
-  to           String @unique
+  to           String @db.MediumText
   alias        String @unique
   access_count Int    @default(0)
 }
