@@ -6,12 +6,21 @@ const crypto = require('crypto')
 
 const generateRandomStr = (N) => crypto.randomBytes(N).toString('base64').substring(0, N)
 
+const trimLastSlashes = (s) => {
+    for (let i = s.length - 1; i > 0; i--) {
+        if (s[i] !== '/') {
+            return s.slice(0, i + 1)
+        }
+    }
+}
+
 router.get('/', (req, res) => {
     res.render('index');
 });
 
 router.post('/', async (req, res) => {
-    const {text} = req.body
+    let {text} = req.body
+    text = trimLastSlashes(text)
     await prisma.link.findFirst({
         where: {
             to: text
